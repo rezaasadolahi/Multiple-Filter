@@ -1,0 +1,61 @@
+#homes {
+    width: 75%;
+    height: max-content;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(15px);
+    overflow: hidden;
+    position: relative;
+    inset: 0;
+
+    hr {
+        color: #2723232a;
+    }
+
+    #AllHome {
+        width: 330px;
+        height: max-content;
+        margin: 0 1em;
+        margin-bottom: 2em;
+        margin-top: 1em;
+        text-align: center;
+        overflow: hidden;
+        padding: 7px 0;
+        border: 1px solid #2723232a;
+        border-radius: 4px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        
+        img {
+            transition: all 0.3s ease;
+            overflow: hidden;
+            z-index: 2;
+
+            &:hover {
+                transform: scale(1.23);
+                cursor: url("../images/onefinger_icon.png"), auto !important;
+            }
+
+            &:hover~#title {
+                visibility: hidden;
+            }
+        }
+
+        #title {
+            transition: all 0.1s ease-in-out;
+            z-index: 1;
+            transform: translate(0, 5px);
+            font-size: 1.07em;
+            cursor: url("../images/select_text.png"), auto !important;
+        }
+
+        #status {
+            display: block;
+            transform: translateY(-5px);
+            text-decoration: none;
+            font-size: larger;
+            cursor: url("../images/hand_finger.png"), auto !important;
+        }
+    }
+}
