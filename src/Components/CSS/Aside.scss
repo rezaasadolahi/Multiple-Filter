@@ -1,12 +1,13 @@
 #aside {
     width: 25%;
     height: 92vh;
-    background-color: rgba(227, 211, 240, 0.637);
-    overflow-y: hidden;
-    overflow-x: auto;
+    background-color: rgb(245, 245, 245);
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     inset: 15px 0 0 0;
-    margin: 0 auto;
+    margin: 0 15px 0 25px;
     border-radius: 5px;
     padding: 5px;
+    box-shadow: rgba(50, 50, 105, 0.35) 0 2px 5px 0px, rgba(0, 0, 0, 0.15) 0 -1px 1px 0px;
 }

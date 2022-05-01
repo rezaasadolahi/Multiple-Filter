@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import { SetData_Home, FilterPrice } from './Reducer'
+import { SetData_Home, FilterData } from './Reducer'
 
 
 
 const MainReducer = combineReducers({
     SetData_Home,
-    FilterPrice
+    FilterData
 })
 
 export default MainReducer

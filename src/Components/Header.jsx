@@ -13,8 +13,8 @@ function Header() {
     return (
         <header>
             <nav>
-                <Navbar bg="light" expand="lg">
-                    <Container>
+                <Navbar bg="white" expand="lg">
+                    <div className='mx-auto w-75 d-flex'>
                         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -30,7 +30,7 @@ function Header() {
                                 </NavDropdown>
                             </Nav>
                         </Navbar.Collapse>
-                    </Container>
+                    </div>
                 </Navbar>
             </nav>
         </header>

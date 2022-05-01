@@ -5,7 +5,7 @@ import { ActionType } from '../Action Type/ActionType'
 //* Dispatch of Home and use in Aside for filter
 const initialState = {
     getData: [],
-    Filter_Price: []
+    FilterData: []
 }
 
 export const SetData_Home = (state = initialState, action) => {
@@ -22,12 +22,12 @@ export const SetData_Home = (state = initialState, action) => {
 }
 
 
-export const FilterPrice = (state = initialState, action) => {
+export const FilterData = (state = initialState, action) => {
     switch (action.type) {
-        case ActionType.FILTER_PRICE:
+        case ActionType.FILTER_DATA:
             return {
                 ...state,
-                Filter_Price: action.payload
+                FilterData: action.payload
             }
 
 

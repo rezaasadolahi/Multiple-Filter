@@ -11,9 +11,9 @@ export const GetData = (data) => {
 }
 
 //* Dispatch of Aside and use in Home
-export const filter_price = (data) => {
+export const filter_Data = (data) => {
     return {
-        type: ActionType.FILTER_PRICE,
+        type: ActionType.FILTER_DATA,
         payload: data
     }
 }

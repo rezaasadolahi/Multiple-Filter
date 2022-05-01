@@ -5,8 +5,7 @@ import { Accordion } from 'react-bootstrap'
 // CSS
 import './CSS/Aside.scss'
 // Reducer
-import { filter_price } from '../Redux/Action Creator/ActionCreator'
-
+import { filter_Data } from '../Redux/Action Creator/ActionCreator'
 
 
 
@@ -20,41 +19,27 @@ function Aside() {
   const homeData = useSelector(state => state.SetData_Home.getData)
   const [firstPrice, setFirstPrice] = useState('')
   const [secondPrice, setSecondPrice] = useState('')
+  const [firstBedroom, setFirstBedroom] = useState('')
+  const [secondBedroom, setSecondBedroom] = useState('')
   const [firstYear, setFirstYear] = useState('')
   const [secondYear, setSecondYear] = useState('')
+  const [firstArea, setFirstArea] = useState('')
+  const [secondArea, setSecondArea] = useState('')
 
 
-
-  // Filter Homes
   const handleApplyFilter = () => {
-    if (firstPrice !== '' && secondPrice !== '') {
-      Dispatch(
-        filter_price(
-          homeData
-            .filter(item => item.price > Number(firstPrice.replaceAll(',', '')))
-            .filter(item => item.price <= Number(secondPrice.replaceAll(',', ''))))
+    return Dispatch(filter_Data(
+      homeData.filter(item =>
+        (firstPrice ? item.price >= Number(firstPrice.replaceAll(',', '')) : true) &&
+        (secondPrice ? item.price <= Number(secondPrice.replaceAll(',', '')) : true) &&
+        (firstBedroom ? item.bedroom >= Number(firstBedroom.replaceAll(',', '')) : true) &&
+        (secondBedroom ? item.bedroom <= Number(secondBedroom.replaceAll(',', '')) : true) &&
+        (firstYear ? item.year_of_construction >= Number(firstYear.replaceAll(',', '')) : true) &&
+        (secondYear ? item.year_of_construction <= Number(secondYear.replaceAll(',', '')) : true) &&
+        (firstArea ? item.area >= Number(firstArea.replaceAll(',', '')) : true) &&
+        (secondArea ? item.area <= Number(secondArea.replaceAll(',', '')) : true)
       )
-      if (firstYear !== '' && secondYear !== '' && firstPrice !== '' && secondPrice !== '') {
-        Dispatch(filter_price(
-          homeData
-            .filter(item => item.price > Number(firstPrice.replaceAll(',', '')))
-            .filter(item => item.price <= Number(secondPrice.replaceAll(',', '')))
-            .filter(item => item.Year_of_construction > Number(firstYear.replaceAll(',', '')))
-            .filter(item => item.Year_of_construction <= Number(secondYear.replaceAll(',', '')))
-        ))
-        return
-      }
-      return
-    }
-
-    if (firstYear !== '' && secondYear !== '') {
-      Dispatch(filter_price(
-        homeData
-          .filter(item => item.Year_of_construction > Number(firstYear.replaceAll(',', '')))
-          .filter(item => item.Year_of_construction <= Number(secondYear.replaceAll(',', '')))
-      ))
-      return
-    }
+    ))
   }
 
 
@@ -67,7 +52,7 @@ function Aside() {
     <div id='aside'>
       <Accordion alwaysOpen>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>قیمت</Accordion.Header>
+          <Accordion.Header><h5 dir='rtl' className='w-100 d-flex px-2'>قیمت</h5></Accordion.Header>
           <Accordion.Body>
             <section className='input-group'>
               <NumberFormat
@@ -91,8 +76,9 @@ function Aside() {
             </section>
           </Accordion.Body>
         </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>سن بنا</Accordion.Header>
+
+        <Accordion.Item eventKey="1" className='mt-1'>
+          <Accordion.Header><h5 dir='rtl' className='w-100 d-flex px-2'>سن بنا</h5></Accordion.Header>
           <Accordion.Body>
             <section className='mt-2'>
               <section className='input-group'>
@@ -100,8 +86,9 @@ function Aside() {
                   inputMode="numeric"
                   thousandSeparator={true}
                   className='form-control w-50'
-                  placeholder='سن بنا تا ...'
+                  placeholder='تا ...'
                   dir='rtl'
+                  maxLength='4'
                   value={secondYear}
                   onChange={(e) => setSecondYear(e.target.value)}
                 />
@@ -109,8 +96,9 @@ function Aside() {
                   inputMode="numeric"
                   thousandSeparator={true}
                   className='form-control w-50'
-                  placeholder='سن بنا از ...'
+                  placeholder='از ...'
                   dir='rtl'
+                  maxLength='4'
                   value={firstYear}
                   onChange={(e) => setFirstYear(e.target.value)}
                 />
@@ -118,8 +106,66 @@ function Aside() {
             </section>
           </Accordion.Body>
         </Accordion.Item>
-      </Accordion>
 
+        <Accordion.Item eventKey="2" className='mt-1'>
+          <Accordion.Header><h5 dir='rtl' className='w-100 d-flex px-2'>متراژ</h5></Accordion.Header>
+          <Accordion.Body>
+            <section className='mt-2'>
+              <section className='input-group'>
+                <NumberFormat
+                  inputMode="numeric"
+                  thousandSeparator={true}
+                  className='form-control w-50'
+                  placeholder='تا ...'
+                  dir='rtl'
+                  value={secondArea}
+                  onChange={(e) => setSecondArea(e.target.value)}
+                />
+                <NumberFormat
+                  inputMode="numeric"
+                  thousandSeparator={true}
+                  className='form-control w-50'
+                  placeholder='از ...'
+                  dir='rtl'
+                  value={firstArea}
+                  onChange={(e) => setFirstArea(e.target.value)}
+                />
+              </section>
+            </section>
+          </Accordion.Body>
+        </Accordion.Item>
+
+        <Accordion.Item eventKey="3" className='mt-1'>
+          <Accordion.Header><h5 dir='rtl' className='w-100 d-flex px-2'>تعداد اتاق</h5></Accordion.Header>
+          <Accordion.Body>
+            <section className='mt-2'>
+              <section className='input-group'>
+                <NumberFormat
+                  inputMode="numeric"
+                  thousandSeparator={true}
+                  className='form-control w-50'
+                  placeholder='تا ...'
+                  dir='rtl'
+                  maxLength='2'
+                  value={secondBedroom}
+                  onChange={(e) => setSecondBedroom(e.target.value)}
+                />
+                <NumberFormat
+                  inputMode="numeric"
+                  thousandSeparator={true}
+                  className='form-control w-50'
+                  placeholder='از ...'
+                  dir='rtl'
+                  maxLength='2'
+                  value={firstBedroom}
+                  onChange={(e) => setFirstBedroom(e.target.value)}
+                />
+              </section>
+            </section>
+          </Accordion.Body>
+        </Accordion.Item>
+
+      </Accordion>
       <button className='btn btn-success w-100 mt-3' onClick={handleApplyFilter}>اعمال فیلتر</button>
     </div>
   )

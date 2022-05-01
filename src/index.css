@@ -7,10 +7,12 @@ html,
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  cursor: url("./images/mouse.png"), auto !important;
 }
 
-* {
-  cursor: url("./images/mouse.png"), auto !important;
+body {
+  overscroll-behavior: contain;
+  background-color: rgb(245, 245, 245);
 }
 
 /* Scroll */
